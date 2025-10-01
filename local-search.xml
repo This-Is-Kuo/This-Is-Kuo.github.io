@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>Welcome to Kuo Space！</title>
+    <link href="/2025/10/01/hello-world/"/>
+    <url>/2025/10/01/hello-world/</url>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;你好，我是Kuo，一名热爱学习与分享的学生。 欢迎来到我的个人空间，这是我的第一篇博客。在这里，我将用文字记录下我的学习旅程——从点滴的知识笔记，到实践中的踩坑总结；从灵光一现的思考，到持续成长的痕迹。<br>&emsp;&emsp;这不仅是一个技术笔记的归档地，更是我思维成长的见证。这个博客是我与自己对话的方式，也是我向世界分享所学的窗口。每一篇文章，都是我对“理解”的一次尝试。 也许内容还很稚嫩，但正是这些不完美，构成了真实的我。如果你也正在学习的路上，欢迎一起交流、共同进步。🌱<br>&emsp;&emsp;感谢你的到来，让我们一起，慢慢变强。</p><p>—— Kuo</p><blockquote><p>这篇文章记录了如何将自己的笔记上传到我的个人主页。</p></blockquote><hr><h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h3 id="创建新帖子-Create-a-new-post"><a href="#创建新帖子-Create-a-new-post" class="headerlink" title="创建新帖子 Create a new post"></a>创建新帖子 Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="运行服务器-Run-server"><a href="#运行服务器-Run-server" class="headerlink" title="运行服务器 Run server"></a>运行服务器 Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="生成静态文件-Generate-static-files"><a href="#生成静态文件-Generate-static-files" class="headerlink" title="生成静态文件 Generate static files"></a>生成静态文件 Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="部署到远程站点-Deploy-to-remote-sites"><a href="#部署到远程站点-Deploy-to-remote-sites" class="headerlink" title="部署到远程站点 Deploy to remote sites"></a>部署到远程站点 Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  
+</search>
