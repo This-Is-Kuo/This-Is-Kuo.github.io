@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://this-is-kuo.github.io/img/illustration/04/07.png">
 <meta property="article:published_time" content="2025-10-15T13:00:08.000Z">
-<meta property="article:modified_time" content="2025-10-15T13:02:21.692Z">
+<meta property="article:modified_time" content="2025-10-15T13:32:36.615Z">
 <meta property="article:author" content="Kuo">
 <meta property="article:tag" content="VLA">
 <meta property="article:tag" content="大模型">
@@ -306,43 +306,31 @@
 <p><img src="/img/illustration/04/04.png" srcset="/img/loading.gif" lazyload alt="image-20251014210715340"></p>
 <p>为了解决这一问题，Bahdanau 等人在 2014 年提出了<strong>注意力机制（Attention Mechanism）</strong>，使得解码器在生成每个词时可以根据相关性动态关注输入序列的不同部分。注意力机制本质上通过计算输入特征之间的相似度分配权重，从而让模型“聚焦”于更相关的信息。</p>
 <p>在此基础上，研究者进一步提出了<strong>自注意力机制（Self-Attention）</strong>。不同于传统的 Encoder-Decoder 注意力（跨序列），自注意力机制是在<strong>同一序列内部</strong>计算各元素之间的依赖关系。它摈弃了循环结构（RNN）和卷积结构（CNN），仅依靠多头自注意力机制（Multi-Head Self-Attention）来捕捉序列中任意两个位置之间的关系，从而实现并行计算并提升语义建模能力。</p>
-<blockquote>
-<p>注意：自注意力机制与注意力机制是由有区别的</p>
-</blockquote>
+<div class="note note-success">
+            <p>注意：自注意力机制与注意力机制是由有区别的</p>
+          </div>
 <p>例如:我们需要给一个句子标注词性，同样的一个单词我们如何区分它在同一个句子中表达的不同含义？这就需要我们知道句子前后隐含的某种“关系”。因此，摈弃了传统的循环结构，取而代之的是只通过注意力机制来计算模型输入与输出的隐含向量表示（可以理解为不同向量之间的相关性）， 这就是自注意力机制（Self-attention）</p>
 <p>换句话说自注意力机制中模型在输出每个词时，可以“看看”输入序列的哪些部分更相关；计算一个<strong>加权平均</strong>，权重代表“注意力分配”；权重通过一个可学习的相似度函数（例如点积）得到。</p>
-<blockquote>
-<p>✅ 自注意力机制的核心思想：</p>
-<ul>
-<li>将整个序列作为输入，而非压缩成一个固定长度的向量；</li>
-<li>输出每个词时，通过计算与输入序列中所有词的相关性（相似度）得到加权平均；</li>
-<li>权重由可学习的函数（如点积相似度）计算得到。</li>
-</ul>
-</blockquote>
+<div class="note note-success">
+            <p>✅ 自注意力机制的核心思想：</p><ul><li>将整个序列作为输入，而非压缩成一个固定长度的向量；</li><li>输出每个词时，通过计算与输入序列中所有词的相关性（相似度）得到加权平均；</li><li>权重由可学习的函数（如点积相似度）计算得到。</li></ul>
+          </div>
 <p><img src="./images/05.png" srcset="/img/loading.gif" lazyload alt="image-20251014210858728"></p>
-<blockquote>
-<p>自注意力机制中可以将整个序列作为输入，而不只是某个固定长度的向量。</p>
-<p>总的来说，自注意力机制的产生是为了解决传统序列模型在处理自然语言时的三大核心问题：</p>
-<ul>
-<li>长距离依赖难以建模</li>
-<li>计算效率低下以</li>
-<li>语义理解能力有限</li>
-</ul>
-</blockquote>
-<blockquote>
-<p>通过自注意力机制，Transformer模型能够并行处理整个序列，有效捕捉序列中任意两个位置之间的关系，从而在机器翻译、文本生成等任务中取得了突破性进展。</p>
-</blockquote>
+<div class="note note-success">
+            <p>自注意力机制中可以将整个序列作为输入，而不只是某个固定长度的向量。</p><p>总的来说，自注意力机制的产生是为了解决传统序列模型在处理自然语言时的三大核心问题：</p><ul><li>长距离依赖难以建模</li><li>计算效率低下以</li><li>语义理解能力有限</li></ul>
+          </div>
+<div class="note note-success">
+            <p>通过自注意力机制，Transformer模型能够并行处理整个序列，有效捕捉序列中任意两个位置之间的关系，从而在机器翻译、文本生成等任务中取得了突破性进展。</p>
+          </div>
 <p><img src="/img/illustration/04/03.png" srcset="/img/loading.gif" lazyload alt="image-20251014204628515"></p>
 <h3 id="1-2自注意力机制计算">1.2自注意力机制计算</h3>
-<blockquote>
-<p>基于李宏毅《Self-Attention》课件整理<br>
-参考论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1706.03762">Attention Is All You Need (Vaswani et al., 2017)</a></p>
-</blockquote>
+<div class="note note-success">
+            <p>基于李宏毅《Self-Attention》课件整理<br>参考论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1706.03762">Attention Is All You Need (Vaswani et al., 2017)</a></p>
+          </div>
 <p><img src="/img/illustration/04/06.png" srcset="/img/loading.gif" lazyload alt="image-20251015191347015"></p>
 <h3 id="1-输入形式">1.输入形式</h3>
-<blockquote>
-<p>self-attention的输入可能是你整个网络的输入也可能是某个隐藏层的输出</p>
-</blockquote>
+<div class="note note-success">
+            <p>self-attention的输入可能是你整个网络的输入也可能是某个隐藏层的输出</p>
+          </div>
 <p>输入为一组向量：</p>
 <p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>X</mi><mo>=</mo><mo stretchy="false">[</mo><msub><mi>x</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>x</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">]</mo><mo separator="true">,</mo><mspace width="1em"/><msub><mi>x</mi><mi>i</mi></msub><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mi>d</mi></msup></mrow><annotation encoding="application/x-tex">X = [x_1, x_2, ..., x_n], \quad x_i \in \mathbb{R}^{d}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">...</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8991em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
@@ -368,9 +356,9 @@
 <p><img src="/img/illustration/04/07.png" srcset="/img/loading.gif" lazyload alt="image-20251015192930507"></p>
 <hr>
 <h4 id="2️⃣-计算注意力分数（相关性）">2️⃣ 计算注意力分数（相关性）</h4>
-<blockquote>
-<p>计算方式有很多种，点积（Dot-product）是最常见的一种。</p>
-</blockquote>
+<div class="note note-success">
+            <p>计算方式有很多种，点积（Dot-product）是最常见的一种。</p>
+          </div>
 <p>使用点积（Dot-product）计算每个 Query 与所有 Key 的相似度：</p>
 <p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>score</mtext><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>Q</mi><mi>i</mi></msub><mo>⋅</mo><msubsup><mi>K</mi><mi>j</mi><mi>T</mi></msubsup></mrow><annotation encoding="application/x-tex">\text{score}(i, j) = Q_i \cdot K_j^T
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">score</span></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.2744em;vertical-align:-0.3831em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-2.453em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3831em;"><span></span></span></span></span></span></span></span></span></span></span></p>
@@ -379,15 +367,9 @@
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">Scores</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0858em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span></span></span></span></span></p>
 <p>在计算得到 Q、K、V后，就可以进一步计算得到权重向量， 计算过程如图所示。</p>
 <p><img src="/img/illustration/04/08.png" srcset="/img/loading.gif" lazyload alt="image-20251015193236292"></p>
-<blockquote>
-<p>每一行表示当前元素对整个序列的关注程度。（这句话可能有些难以理解）具体来说：</p>
-<p>该矩阵，第i行第j列表示第 i 个向量（当前词）对第 j 个向量的<strong>注意力分数</strong></p>
-<p>换句话说：</p>
-<ul>
-<li>第 i 行：固定了一个 <strong>Query 向量</strong>（当前词）</li>
-<li>这一行的所有列，就是它对每个 <strong>Key 向量</strong>（整个序列中所有词）的“相关性分数”</li>
-</ul>
-</blockquote>
+<div class="note note-success">
+            <p>每一行表示当前元素对整个序列的关注程度。（这句话可能有些难以理解）具体来说：</p><p>该矩阵，第i行第j列表示第 i 个向量（当前词）对第 j 个向量的<strong>注意力分数</strong></p><p>换句话说：</p><ul><li>第 i 行：固定了一个 <strong>Query 向量</strong>（当前词）</li><li>这一行的所有列，就是它对每个 <strong>Key 向量</strong>（整个序列中所有词）的“相关性分数”</li></ul>
+          </div>
 <hr>
 <h4 id="3️⃣-缩放（Scaling）">3️⃣ 缩放（Scaling）</h4>
 <p>为避免数值过大导致梯度不稳定，将结果除以维度平方根：</p>
@@ -420,9 +402,9 @@ H400000v40H845.2724
 s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
 c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
 M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1828em;"><span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.93em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span></span></span></span></p>
-<blockquote>
-<p>归一化后，权重之和为 1，表示注意力分布。</p>
-</blockquote>
+<div class="note note-success">
+            <p>归一化后，权重之和为 1，表示注意力分布。</p>
+          </div>
 <hr>
 <h4 id="5️⃣-加权求和（信息聚合）">5️⃣ 加权求和（信息聚合）</h4>
 <p>利用注意力权重矩阵 (A) 对 Value 向量加权求和：</p>
@@ -463,123 +445,17 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <p>拼接各头结果：</p>
 <p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>MultiHead</mtext><mo stretchy="false">(</mo><mi>Q</mi><mo separator="true">,</mo><mi>K</mi><mo separator="true">,</mo><mi>V</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">[</mo><msub><mtext>head</mtext><mn>1</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mtext>head</mtext><mi>h</mi></msub><mo stretchy="false">]</mo><msub><mi>W</mi><mi>O</mi></msub></mrow><annotation encoding="application/x-tex">\text{MultiHead}(Q, K, V) = [\text{head}_1, ..., \text{head}_h]W_O
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">MultiHead</span></span><span class="mopen">(</span><span class="mord mathnormal">Q</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord"><span class="mord text"><span class="mord">head</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">...</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord text"><span class="mord">head</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">]</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">O</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
-<blockquote>
-<p>每个注意力头可捕捉不同的语义、结构或位置相关性。</p>
-</blockquote>
+<div class="note note-success">
+            <p>每个注意力头可捕捉不同的语义、结构或位置相关性。</p>
+          </div>
 <p>在论文中，作者使用了h=8个并行的自注意力模块来构建一个注意力层，对于每个自注意力模块限定了<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mi>k</mi></msub><mo>=</mo><msub><mi>d</mi><mi>v</mi></msub><mo>=</mo><msub><mi>d</mi><mrow><mi>m</mi><mi>o</mi><mi>d</mi><mi>e</mi><mi>l</mi></mrow></msub><mi mathvariant="normal">/</mi><mi>h</mi><mo>=</mo><mn>64</mn></mrow><annotation encoding="application/x-tex">d_k=d_v=d_{model}/h=64</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathnormal">h</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">64</span></span></span></span>。这里可以发现，多头注意力机制是将一个大的高维单头拆分成了h个多头。因此，整个多头注意力机制计算过程可以通过如图所示来进行表示。</p>
 <p><img src="/img/illustration/04/12.png" srcset="/img/loading.gif" lazyload alt="image-20251015195305365"></p>
-<blockquote>
-<p><strong>当输入维度相同，为什么还要用多个头？</strong><br>
-<strong>单头不也能算出注意力吗？</strong></p>
-<p>单头的特点：</p>
-<ul>
-<li>所有信息都压缩在一个“相关性空间”中；</li>
-<li>这个头只能<strong>学习一种类型的关系模式</strong>。</li>
-</ul>
-<p>例如：</p>
-<blockquote>
-<p>只能捕捉 “语义相似性”，<br>
-但可能无法同时关注 “句法依赖” 或 “时序关联”。</p>
-</blockquote>
-<p>多头注意力：</p>
-<ul>
-<li>不要让一个头干所有事</li>
-<li>我们可以用多个“小注意力头”，让它们<strong>分别学习不同的关系特征</strong>。</li>
-</ul>
-<p><strong>相同维度下多头与单头的区别：</strong></p>
-<p>假设模型总维度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mrow><mi>m</mi><mi>o</mi><mi>d</mi><mi>e</mi><mi>l</mi></mrow></msub><mo>=</mo><mn>512</mn></mrow><annotation encoding="application/x-tex">d_{model} = 512</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">512</span></span></span></span></p>
-<ul>
-<li>单头：<br>
-每个 Q, K, V 向量维度都是 <strong>512</strong>。</li>
-<li>多头（例如 8 头）：<br>
-每个头使用较小维度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mi>k</mi></msub><mo>=</mo><msub><mi>d</mi><mi>v</mi></msub><mo>=</mo><mn>512</mn><mi mathvariant="normal">/</mi><mn>8</mn><mo>=</mo><mn>64</mn></mrow><annotation encoding="application/x-tex">d_k = d_v = 512 / 8 = 64</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">512/8</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">64</span></span></span></span>。</li>
-</ul>
-<p>最终各头输出拼接回 512 维。</p>
-<p>这意味着每个头学习一个<strong>不同的线性投影子空间</strong>。</p>
-<p>因此：</p>
-<blockquote>
-<p>多头注意力 ≈ 把输入向量分到不同的低维子空间中，<br>
-各自计算注意力，捕捉不同的语义关系。</p>
-</blockquote>
-<p>假设总维度相同：</p>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>单头</th>
-<th>多头（相同总维度）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>维度分配</td>
-<td>所有维度在一个空间</td>
-<td>划分为多个子空间</td>
-</tr>
-<tr>
-<td>表达能力</td>
-<td>单一关注模式</td>
-<td>多种关注模式并行</td>
-</tr>
-<tr>
-<td>特征解耦</td>
-<td>混合所有信息</td>
-<td>不同头可学习不同特征</td>
-</tr>
-<tr>
-<td>泛化能力</td>
-<td>容易陷入某一模式</td>
-<td>头之间多样化增强鲁棒性</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>当模型的维度<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝑑</mi><mi>𝑚</mi></msub></mrow><annotation encoding="application/x-tex">𝑑_𝑚</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>确定时，一定程度上ℎ越大，整个模型的表达能力就越强，越能提高模型对于注意力权重的合理分配。</p>
-</blockquote>
-<p><strong>可视化理解：</strong></p>
-<p>想象输入矩阵为 512 维向量：</p>
-<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">Single Head:</span>  <span class="hljs-title">[</span><span class="hljs-literal">--------------------------------------------------</span><span class="hljs-title">]</span>  <span class="hljs-comment">512维一个空间</span><br><span class="hljs-comment">Multi</span><span class="hljs-literal">-</span><span class="hljs-comment">Head:</span>   <span class="hljs-title">[</span><span class="hljs-literal">--------</span><span class="hljs-title">]</span><span class="hljs-title">[</span><span class="hljs-literal">--------</span><span class="hljs-title">]</span><span class="hljs-title">[</span><span class="hljs-literal">--------</span><span class="hljs-title">]</span><span class="hljs-title">[</span><span class="hljs-literal">--------</span><span class="hljs-title">]</span><span class="hljs-title">[</span><span class="hljs-literal">--------</span><span class="hljs-title">]</span><span class="hljs-title">[</span><span class="hljs-literal">--------</span><span class="hljs-title">]</span><span class="hljs-title">[</span><span class="hljs-literal">--------</span><span class="hljs-title">]</span><span class="hljs-title">[</span><span class="hljs-literal">--------</span><span class="hljs-title">]</span><br>                  <span class="hljs-comment">64维       64维       64维        64维       64维        64维       64维       64维</span><br></code></pre></td></tr></table></figure>
-<p>每个小块（头）专注于不同“视角”，最终拼回完整表达。</p>
-</blockquote>
-<blockquote>
-<p>总体对比：</p>
-<table>
-<thead>
-<tr>
-<th>对比维度</th>
-<th>单头注意力</th>
-<th>多头注意力（相同总维度）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>参数规模</td>
-<td>相似</td>
-<td>相似</td>
-</tr>
-<tr>
-<td>学习空间</td>
-<td>一个高维空间</td>
-<td>多个低维子空间</td>
-</tr>
-<tr>
-<td>学习到的关系类型</td>
-<td>单一</td>
-<td>多样</td>
-</tr>
-<tr>
-<td>特征表达能力</td>
-<td>较弱</td>
-<td>更强</td>
-</tr>
-<tr>
-<td>泛化与鲁棒性</td>
-<td>一般</td>
-<td>更好</td>
-</tr>
-</tbody>
-</table>
-</blockquote>
+<div class="note note-success">
+            <p><strong>当输入维度相同，为什么还要用多个头？</strong><br><strong>单头不也能算出注意力吗？</strong></p><p>单头的特点：</p><ul><li>所有信息都压缩在一个“相关性空间”中；</li><li>这个头只能<strong>学习一种类型的关系模式</strong>。</li></ul><p>例如：</p><p>只能捕捉 “语义相似性”，<br>但可能无法同时关注 “句法依赖” 或 “时序关联”。</p><p>多头注意力：</p><ul><li>不要让一个头干所有事</li><li>我们可以用多个“小注意力头”，让它们<strong>分别学习不同的关系特征</strong>。</li></ul><p><strong>相同维度下多头与单头的区别：</strong></p><p>假设模型总维度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mrow><mi>m</mi><mi>o</mi><mi>d</mi><mi>e</mi><mi>l</mi></mrow></msub><mo>=</mo><mn>512</mn></mrow><annotation encoding="application/x-tex">d_{model} = 512</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">512</span></span></span></span></p><ul><li>单头：<br>每个 Q, K, V 向量维度都是 <strong>512</strong>。</li><li>多头（例如 8 头）：<br>每个头使用较小维度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mi>k</mi></msub><mo>=</mo><msub><mi>d</mi><mi>v</mi></msub><mo>=</mo><mn>512</mn><mi mathvariant="normal">/</mi><mn>8</mn><mo>=</mo><mn>64</mn></mrow><annotation encoding="application/x-tex">d_k = d_v = 512 / 8 = 64</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">512/8</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">64</span></span></span></span>。</li></ul><p>最终各头输出拼接回 512 维。</p><p>这意味着每个头学习一个<strong>不同的线性投影子空间</strong>。</p><p>因此：</p><p>多头注意力 ≈ 把输入向量分到不同的低维子空间中，<br>各自计算注意力，捕捉不同的语义关系。</p><p>假设总维度相同：</p><table><thead><tr><th>特性</th><th>单头</th><th>多头（相同总维度）</th></tr></thead><tbody><tr><td>维度分配</td><td>所有维度在一个空间</td><td>划分为多个子空间</td></tr><tr><td>表达能力</td><td>单一关注模式</td><td>多种关注模式并行</td></tr><tr><td>特征解耦</td><td>混合所有信息</td><td>不同头可学习不同特征</td></tr><tr><td>泛化能力</td><td>容易陷入某一模式</td><td>头之间多样化增强鲁棒性</td></tr></tbody></table><p>当模型的维度<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝑑</mi><mi>𝑚</mi></msub></mrow><annotation encoding="application/x-tex">𝑑_𝑚</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>确定时，一定程度上ℎ越大，整个模型的表达能力就越强，越能提高模型对于注意力权重的合理分配。</p><p><strong>可视化理解：</strong></p><p>想象输入矩阵为 512 维向量：</p><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">Single Head:</span>  <span class="hljs-title">[</span><span class="hljs-literal">--------------------------------------------------</span><span class="hljs-title">]</span>  <span class="hljs-comment">512维一个空间</span><br><span class="hljs-comment">Multi</span><span class="hljs-literal">-</span><span class="hljs-comment">Head:</span>   <span class="hljs-title">[</span><span class="hljs-literal">--------</span><span class="hljs-title">]</span><span class="hljs-title">[</span><span class="hljs-literal">--------</span><span class="hljs-title">]</span><span class="hljs-title">[</span><span class="hljs-literal">--------</span><span class="hljs-title">]</span><span class="hljs-title">[</span><span class="hljs-literal">--------</span><span class="hljs-title">]</span><span class="hljs-title">[</span><span class="hljs-literal">--------</span><span class="hljs-title">]</span><span class="hljs-title">[</span><span class="hljs-literal">--------</span><span class="hljs-title">]</span><span class="hljs-title">[</span><span class="hljs-literal">--------</span><span class="hljs-title">]</span><span class="hljs-title">[</span><span class="hljs-literal">--------</span><span class="hljs-title">]</span><br>                  <span class="hljs-comment">64维     64维       64维      64维      64维      64维     64维     64维</span><br></code></pre></td></tr></table></figure><p>每个小块（头）专注于不同“视角”，最终拼回完整表达。</p>
+          </div>
+<div class="note note-success">
+            <p>总体对比：</p><table><thead><tr><th>对比维度</th><th>单头注意力</th><th>多头注意力（相同总维度）</th></tr></thead><tbody><tr><td>参数规模</td><td>相似</td><td>相似</td></tr><tr><td>学习空间</td><td>一个高维空间</td><td>多个低维子空间</td></tr><tr><td>学习到的关系类型</td><td>单一</td><td>多样</td></tr><tr><td>特征表达能力</td><td>较弱</td><td>更强</td></tr><tr><td>泛化与鲁棒性</td><td>一般</td><td>更好</td></tr></tbody></table>
+          </div>
 <hr>
 <h3 id="5-计算流程概览">5.计算流程概览</h3>
 <table>
@@ -705,10 +581,9 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 </li>
 </ul>
 <p><strong>总结：</strong></p>
-<blockquote>
-<p>自注意力通过学习不同向量之间的“相关性”，让模型能全局建模上下文关系。<br>
-它是 Transformer、BERT、ViT 等模型的核心基础结构。</p>
-</blockquote>
+<div class="note note-success">
+            <p>自注意力通过学习不同向量之间的“相关性”，让模型能全局建模上下文关系。<br>它是 Transformer、BERT、ViT 等模型的核心基础结构。</p>
+          </div>
 
                 
               </div>
